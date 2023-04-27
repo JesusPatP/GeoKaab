@@ -3,8 +3,9 @@ package com.app.geokaab.data.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
+
 data class Experience(
     var id: String = "",
     @SerializedName("title") var title: String = "",
@@ -18,4 +19,4 @@ data class Experience(
     @SerializedName("capacity") val capacity: Int = 0,
     @SerializedName("availability") val availability : List<String> = arrayListOf(),
     @SerializedName("activities") val activities: List<String> = arrayListOf(),
-) : Parcelable
+) : Serializable

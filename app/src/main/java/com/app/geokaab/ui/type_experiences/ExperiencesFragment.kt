@@ -61,7 +61,10 @@ class ExperiencesFragment : Fragment() {
                 */
 
                 val intent = Intent(activity, ExperienceDetailActivity::class.java).apply {
-                    putExtra("experiences", item)
+
+                    putExtra("experience", item)
+
+
                 }
                 startActivity(intent)
             }
