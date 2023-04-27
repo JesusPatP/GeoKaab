@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "345944647840",
+    "firebase_url": "https://geokaab-default-rtdb.firebaseio.com",
+    "project_id": "geokaab",
+    "storage_bucket": "geokaab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345944647840:android:5926ff19d762e65366c1c5",
+        "android_client_info": {
+          "package_name": "com.app.geokaab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345944647840-a6u6vedkra7g0mtedg8b3i3odnr7qt3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPiRt5IgAMd4GaN0ca_T24x6YY1tMZ1es"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345944647840-a6u6vedkra7g0mtedg8b3i3odnr7qt3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
