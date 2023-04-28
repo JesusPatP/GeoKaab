@@ -1,32 +1,23 @@
 package com.app.geokaab.ui.type_experiences
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.app.geokaab.R
 import com.app.geokaab.data.model.TypeExperience
 import com.app.geokaab.databinding.FragmentExperiencesBinding
-import com.app.geokaab.di.FirebaseModule
-import com.app.geokaab.ui.home.HomeViewModel
 import com.app.geokaab.util.UiState
 import com.app.geokaab.util.hide
 import com.app.geokaab.util.show
 import com.app.geokaab.util.toast
 import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ExperiencesFragment : Fragment() {
@@ -44,7 +35,7 @@ class ExperiencesFragment : Fragment() {
     val adapterTypes by lazy {
         TypeExperienceListingAdapter(
             onItemClicked = { pos, item ->
-                findNavController().navigate(R.id.navigation_home,Bundle().apply {
+                findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity,Bundle().apply {
                     putParcelable("type_experience",item)
                 })
             }
@@ -82,12 +73,8 @@ class ExperiencesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentExperiencesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        homeViewModel.text.observe(viewLifecycleOwner) {
-        }
         //val appContext = context!!.applicationContext
         return root
     }
@@ -113,7 +100,7 @@ class ExperiencesFragment : Fragment() {
         binding.recyclerViewExperiences.adapter = adapterExperiences
 
         binding.button.setOnClickListener {
-            findNavController().navigate(R.id.navigation_home)
+            findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
         }
 
         viewModelTypes.getTypeExperiences()
