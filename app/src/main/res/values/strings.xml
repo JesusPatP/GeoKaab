@@ -33,4 +33,5 @@
     <!--Strings de prueba de experience container-->
     <string name="title_container_experience">Conociendo la cueva de "Harry Potter"</string>
     <string name="subtitle_container_experience">Personal home | Naranjal Poniente | Q.Roo</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

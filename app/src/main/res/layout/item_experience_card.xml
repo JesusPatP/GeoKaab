@@ -6,12 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/experience_card"
-    android:layout_margin="8dp"
     android:clickable="true"
     app:cardCornerRadius="12dp"
-    android:layout_marginHorizontal="20dp"
     app:cardElevation="3dp"
-
     android:elevation="0dp"
     app:cardBackgroundColor="@android:color/transparent"
     android:outlineAmbientShadowColor="@android:color/transparent"

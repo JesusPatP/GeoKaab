@@ -1,21 +1,26 @@
 package com.app.geokaab.ui.type_experiences
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.app.geokaab.R
 import com.app.geokaab.data.model.Experience
-import com.app.geokaab.databinding.ActivityMainBinding
 import com.app.geokaab.databinding.ActivityExperienceDetailBinding
-import com.app.geokaab.util.UiState
-import com.app.geokaab.util.hide
-import com.app.geokaab.util.show
-import com.squareup.picasso.Callback
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso
 
-class ExperienceDetailActivity : AppCompatActivity() {
+class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityExperienceDetailBinding
+    private lateinit var mMap: GoogleMap
+    private var latitude : Double = 20.5790629
+    private  var longitude : Double = -87.1195703
+    private var title : String = "Xcaret"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExperienceDetailBinding.inflate(layoutInflater)
@@ -23,6 +28,9 @@ class ExperienceDetailActivity : AppCompatActivity() {
         setContentView(view)
 
         var objNote: Experience? = null
+        //Para el mapa
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment?
 
         objNote = intent.getSerializableExtra("experience") as? Experience
 
@@ -73,10 +81,35 @@ class ExperienceDetailActivity : AppCompatActivity() {
             //
             binding.observations.setText(experience.observations)
             //
-            binding.map.scaleType = ImageView.ScaleType.FIT_XY
-            Picasso.get().load(experience.images[0]).into(binding.map)
+            //Varaiables para el mapa
+            val latlong =
+                experience.location[0].split(",".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+            latitude = latlong[0].toDouble()
+            longitude = latlong[1].toDouble()
+            title = experience.location[1]
+
+            mapFragment?.getMapAsync(this)
+
+            //val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+            //mapFragment?.getMapAsync(callback)
         }
 
 
+
+
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(latitude,longitude)
+        mMap.addMarker(MarkerOptions().position(sydney).title(title))
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(sydney,10f),
+            3000,null
+        )
     }
 }
