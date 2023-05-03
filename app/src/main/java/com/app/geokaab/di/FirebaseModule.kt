@@ -36,9 +36,18 @@ object FirebaseModule {
         return FirebaseAuth.getInstance()
     }
 
+    /*
     @Singleton
     @Provides
     fun provideFirebaseStroageInstance(): StorageReference {
+        return FirebaseStorage.getInstance().getReference(FirebaseStorageConstants.ROOT_DIRECTORY)
+    }
+    */
+
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorageInstance(): StorageReference {
         return FirebaseStorage.getInstance().getReference(FirebaseStorageConstants.ROOT_DIRECTORY)
     }
 

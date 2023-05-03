@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.app.geokaab.R
+import com.app.geokaab.data.model.Experience
 import com.app.geokaab.data.model.TypeExperience
 import com.app.geokaab.databinding.ItemTypeExperienceBinding
 import com.squareup.picasso.Picasso
@@ -19,7 +20,6 @@ class TypeExperienceListingAdapter(
 ) : RecyclerView.Adapter<TypeExperienceListingAdapter.MyViewHolder>() {
 
     private var list: MutableList<TypeExperience> = arrayListOf()
-    private var imagelist: MutableList<Uri> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = ItemTypeExperienceBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -35,6 +35,11 @@ class TypeExperienceListingAdapter(
     fun updateList(list: MutableList<TypeExperience>){
         this.list = list
         notifyDataSetChanged()
+    }
+
+    fun onCreateList(list: MutableList<TypeExperience>) : String{
+        updateList(list)
+        return list[0].id.toString()
     }
 
     fun removeItem(position: Int){

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,40 +28,35 @@ class ExperiencesFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var firstTypeExperience : String = "Hn3PrplqevVhJfPe4ymq"
+
     //To Firestore
     val viewModelTypes: TypeExperienceViewModel by viewModels()
     val viewModelExperiences: ExperienceViewModel by viewModels()
 
-
-    val adapterTypes by lazy {
-        TypeExperienceListingAdapter(
-            onItemClicked = { pos, item ->
-                findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity,Bundle().apply {
-                    putParcelable("type_experience",item)
-                })
-            }
-        )
-    }
-
     val adapterExperiences by lazy {
         ExperienceListingAdapter(
             onItemClicked = { pos, item ->
-                /*
-                findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity,Bundle().apply {
-                    putParcelable("experiences",item)
-                })
-                */
-
                 val intent = Intent(activity, ExperienceDetailActivity::class.java).apply {
-
                     putExtra("experience", item)
-
-
                 }
                 startActivity(intent)
             }
         )
     }
+
+    val adapterTypes by lazy {
+        TypeExperienceListingAdapter(
+            onItemClicked = { pos, item ->
+                Toast.makeText(context, "Hola",Toast.LENGTH_LONG)
+                adapterExperiences.filterByTypeCode(item.id.toString() )
+
+                //viewModelExperiences.filterExperiences(item.id)
+            }
+        )
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,12 +95,15 @@ class ExperiencesFragment : Fragment() {
         binding.recyclerViewExperiences.layoutManager = layoutManagerExperiences
         binding.recyclerViewExperiences.adapter = adapterExperiences
 
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
-        }
-
         viewModelTypes.getTypeExperiences()
         viewModelExperiences.getExperiences()
+
+        binding.button.setOnClickListener {
+            //findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
+            viewModelExperiences.getExperiences()
+        }
+
+
 
     }
 
@@ -120,7 +119,7 @@ class ExperiencesFragment : Fragment() {
                 }
                 is UiState.Success -> {
                     binding.progressBar.hide()
-                    adapterTypes.updateList(state.data.toMutableList())
+                    firstTypeExperience = adapterTypes.onCreateList(state.data.toMutableList())
                 }
             }
         }
@@ -136,10 +135,12 @@ class ExperiencesFragment : Fragment() {
                 }
                 is UiState.Success -> {
                     binding.progressBar.hide()
-                    adapterExperiences.updateList(state.data.toMutableList())
+                    adapterExperiences.createList(state.data.toMutableList(),firstTypeExperience)
                 }
             }
         }
+
+
     }
 
 }

@@ -7,7 +7,7 @@ import java.io.Serializable
 
 
 data class Experience(
-    var id: String = "",
+    @SerializedName("id") var id: String = "",
     @SerializedName("title") var title: String = "",
     @SerializedName("type") val type: List<String> = arrayListOf(),
     @SerializedName("recommendations") val recommendations : String = "",

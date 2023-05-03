@@ -1,26 +1,23 @@
 package com.app.geokaab.ui.type_experiences
 
-import android.net.Uri
+import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.net.toUri
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.app.geokaab.R
 import com.app.geokaab.data.model.Experience
-import com.app.geokaab.data.model.TypeExperience
 import com.app.geokaab.databinding.ItemExperienceCardBinding
-import com.app.geokaab.databinding.ItemTypeExperienceBinding
 import com.squareup.picasso.Picasso
+import java.util.function.Predicate
+import java.util.stream.Collectors
 
 class ExperienceListingAdapter(
     val onItemClicked: (Int, Experience) -> Unit
 ) : RecyclerView.Adapter<ExperienceListingAdapter.MyViewHolder>() {
+    private var listOriginal: MutableList<Experience> = arrayListOf()
+    private var list: ArrayList<Experience> = arrayListOf()
 
-    private var list: MutableList<Experience> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = ItemExperienceCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -32,14 +29,20 @@ class ExperienceListingAdapter(
         holder.bind(item)
         
     }
+    fun createList(list: MutableList<Experience>, idTypeExperience : String){
+        this.listOriginal.clear()
+        listOriginal = list
+        filterByTypeCode(idTypeExperience)
+        //updateList(listOriginal)
+    }
 
-    fun updateList(list: MutableList<Experience>){
+    fun updateList(list: ArrayList<Experience>){
         this.list = list
         notifyDataSetChanged()
     }
 
     fun removeItem(position: Int){
-        list.removeAt(position)
+        listOriginal.removeAt(position)
         notifyItemChanged(position)
     }
 
@@ -67,6 +70,26 @@ class ExperienceListingAdapter(
             binding.experienceCard.setOnClickListener { onItemClicked.invoke(adapterPosition,item) }
         }
     }
+
+    fun filterByTypeCode(idType: String){
+        this.list.clear()
+        //listOriginal = list
+
+        listOriginal.forEachIndexed{
+            index, parameters ->
+            if (parameters.type[0] == idType){
+                list.add(parameters)
+                println("######Hola########" + parameters.title)
+            }
+
+        }
+
+        updateList(list)
+
+
+    }
+
+
 
 }
 

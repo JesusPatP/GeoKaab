@@ -12,12 +12,14 @@ class ExperienceRepositoryImp(
     val storageReference: StorageReference
 ) : ExperienceRepository {
 
+    private val Experiences = arrayListOf<Experience>()
     override fun getExperiences(result: (UiState<List<Experience>>) -> Unit) {
+        Experiences.clear()
         //Referencia de la coleccion de firestore
         database.collection(FireStoreCollection.Experience)
             .get()
             .addOnSuccessListener {
-                val Experiences = arrayListOf<Experience>()
+
                 for (document in it) {
                     val Experience = document.toObject(Experience::class.java)
                     Experiences.add(Experience)
@@ -34,5 +36,14 @@ class ExperienceRepositoryImp(
                 )
             }
     }
+
+    override fun filterExperiences(
+        idTypeExperience: String?,
+        result: (UiState<List<Experience>>) -> Unit
+    ) {
+
+    }
+
+
 
 }

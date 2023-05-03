@@ -18,10 +18,20 @@ class ExperienceViewModel@Inject constructor(
     val Experience: LiveData<UiState<List<Experience>>>
         get() = _Experiences
 
+    private val _FilterExperiences = MutableLiveData<UiState<List<Experience>>>()
+    val FilterExperience: LiveData<UiState<List<Experience>>>
+        get() = _FilterExperiences
+
     fun getExperiences() {
         _Experiences.value = UiState.Loading
         repository.getExperiences { _Experiences.value = it }
     }
+
+    fun filterExperiences(idTypeExperience: String) {
+        _FilterExperiences.value = UiState.Loading
+        repository.filterExperiences(idTypeExperience) {_FilterExperiences.value = it }
+    }
+
 
 
 
