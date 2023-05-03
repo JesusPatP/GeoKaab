@@ -17,6 +17,7 @@ import com.app.geokaab.util.UiState
 import com.app.geokaab.util.hide
 import com.app.geokaab.util.show
 import com.app.geokaab.util.toast
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -102,6 +103,13 @@ class ExperiencesFragment : Fragment() {
             //findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
             viewModelExperiences.getExperiences()
         }
+
+        BottomSheetBehavior.from(binding.designBottomSheet).apply {
+            peekHeight = 200
+            this.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+
+
 
 
 

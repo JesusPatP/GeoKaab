@@ -27,6 +27,31 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         val view = binding.root
         setContentView(view)
 
+        initialize()
+
+        binding.cardBtnBack.setOnClickListener(){
+            onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(latitude,longitude)
+        mMap.addMarker(MarkerOptions().position(sydney).title(title))
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(sydney,10f),
+            3000,null
+        )
+    }
+
+    fun initialize(){
         var objNote: Experience? = null
         //Para el mapa
         val mapFragment = supportFragmentManager
@@ -94,22 +119,5 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             //val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             //mapFragment?.getMapAsync(callback)
         }
-
-
-
-
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(latitude,longitude)
-        mMap.addMarker(MarkerOptions().position(sydney).title(title))
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(sydney,10f),
-            3000,null
-        )
     }
 }
