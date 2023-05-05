@@ -121,7 +121,8 @@ class ExperiencesFragment : Fragment() {
         binding.buttonMap.setOnClickListener {
             //findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
             //viewModelExperiences.getExperiences()
-
+            binding.buttonMap.hide()
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
         }
 
