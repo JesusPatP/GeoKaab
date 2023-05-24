@@ -1,9 +1,6 @@
 package com.app.geokaab.di
 
-import com.app.geokaab.data.repository.ExperienceRepository
-import com.app.geokaab.data.repository.ExperienceRepositoryImp
-import com.app.geokaab.data.repository.TypeExperienceRepository
-import com.app.geokaab.data.repository.TypeExperienceRepositoryImp
+import com.app.geokaab.data.repository.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import dagger.Module
@@ -32,6 +29,15 @@ object RepositoryModule {
         storageReference: StorageReference
     ): ExperienceRepository {
         return ExperienceRepositoryImp(database,storageReference)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationRepository(
+        database: FirebaseFirestore,
+        storageReference: StorageReference
+    ): LocationRepository {
+        return LocationRepositoryImp(database,storageReference)
     }
 
 }

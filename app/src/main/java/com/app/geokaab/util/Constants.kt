@@ -1,10 +1,13 @@
 package com.app.geokaab.util
 
+import com.app.geokaab.data.model.Location
+
 object FireStoreCollection{
     val NOTE = "note"
     val USER = "user"
     val TypeExperience = "type_experiences"
     val Experience = "experiences"
+    val Location = "locations"
 }
 
 object FireDatabase{

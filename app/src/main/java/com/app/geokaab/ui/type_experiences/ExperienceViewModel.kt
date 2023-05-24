@@ -27,12 +27,5 @@ class ExperienceViewModel@Inject constructor(
         repository.getExperiences { _Experiences.value = it }
     }
 
-    fun filterExperiences(idTypeExperience: String) {
-        _FilterExperiences.value = UiState.Loading
-        repository.filterExperiences(idTypeExperience) {_FilterExperiences.value = it }
-    }
-
-
-
 
 }

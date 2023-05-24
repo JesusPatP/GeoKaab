@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.geokaab.R
-import com.app.geokaab.data.model.TypeExperience
+import com.app.geokaab.data.model.Location
 import com.app.geokaab.databinding.FragmentExperiencesBinding
 import com.app.geokaab.util.UiState
 import com.app.geokaab.util.hide
@@ -25,7 +22,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,9 +42,14 @@ class ExperiencesFragment : Fragment() {
     //To Firestore
     val viewModelTypes: TypeExperienceViewModel by viewModels()
     val viewModelExperiences: ExperienceViewModel by viewModels()
+    val viewModelLocation: LocationViewModel by viewModels()
     //lateinit var MainActivityBottomBar: Fragment
 
     //
+    private var list: List<Location> = arrayListOf()
+    private var latitude : Double = 20.5790629
+    private  var longitude : Double = -87.1195703
+    private var title : String = "Xcaret"
 
     val adapterExperiences by lazy {
         ExperienceListingAdapter(
@@ -113,10 +114,16 @@ class ExperiencesFragment : Fragment() {
         binding.recyclerViewExperiences.layoutManager = layoutManagerExperiences
         binding.recyclerViewExperiences.adapter = adapterExperiences
 
+
         //Get Types
         viewModelTypes.getTypeExperiences()
         //Get Experiences
         viewModelExperiences.getExperiences()
+        //Get Locations
+        viewModelLocation.getLocations()
+
+
+
         //Map Buttom
         binding.buttonMap.setOnClickListener {
             //findNavController().navigate(R.id.action_experiencesFragment_to_experienceDetailActivity)
@@ -129,13 +136,14 @@ class ExperiencesFragment : Fragment() {
         //BottomSheet
         BottomSheet()
 
-        //Map
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
-
         //
 
 
+    }
+    private fun createMap(){
+        //Map
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
     }
 
     private fun BottomSheet() {
@@ -227,7 +235,29 @@ class ExperiencesFragment : Fragment() {
             }
         }
 
+        viewModelLocation.Location.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    binding.progressBar.show()
+                }
+                is UiState.Failure -> {
+                    binding.progressBar.hide()
+                    toast(state.error)
+                }
+                is UiState.Success -> {
+                    binding.progressBar.hide()
+                    getLocations(state.data.toList())
+                    createMap()
+                    //adapterExperiences.createList(state.data.toMutableList(), firstTypeExperience)
+                }
+            }
+        }
 
+
+    }
+
+    fun getLocations(list: List<Location>){
+        this.list = list
     }
 
     private val callback = OnMapReadyCallback { googleMap ->
@@ -240,9 +270,53 @@ class ExperiencesFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+
+        /*
+        val Naranjal = LatLng(19.5774805,-88.0454902)
+        googleMap.addMarker(MarkerOptions().position(Naranjal).title("Naranjal Poniente"))
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(Naranjal))
+
+        googleMap.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(Naranjal,5f),
+            3000,null
+        )
+
+        if(list.isEmpty()){
+            println("######Empty########")
+
+        }else{
+            println("######NotEmpty########")
+        }
+
+         */
+
+
+        var coordinates =  LatLng(19.5774805,-88.0454902)
+        for (contador in 0..(list.size-1)) {
+            //Varaiables para el mapa
+            var latlong =
+                list.get(contador).coordinates.split(",".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+            latitude = latlong[0].toDouble()
+            longitude = latlong[1].toDouble()
+            title = list.get(contador).location
+
+            coordinates = LatLng(latitude,longitude)
+
+            googleMap.addMarker(MarkerOptions().position(coordinates).title(title))
+        }
+
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates))
+
+
+        // googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+
+        //googleMap.addMarker(MarkerOptions().position(chichen).title("Marker in Sydney"))
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(Museo_Maya))
+
+
     }
 
 }
