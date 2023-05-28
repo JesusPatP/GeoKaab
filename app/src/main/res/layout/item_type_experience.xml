@@ -25,16 +25,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_notifications_black_24dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent"
+            style="@style/icons_bg"/>
 
         <TextView
             android:id="@+id/title"
-            style="@style/TitilliumWebBold"
+            style="@style/SubTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Gastronomía"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -44,8 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:layout_marginTop="5dp"
-            android:background="?android:attr/listDivider"
-            android:backgroundTint="@color/black"
+            style="@style/listDivider_bg"
             android:backgroundTintMode="screen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

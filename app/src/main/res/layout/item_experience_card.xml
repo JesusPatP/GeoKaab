@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Sensorial"
-            android:textColor="@color/black50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
@@ -60,7 +59,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="Acampando en la laguna"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/type" />
 
@@ -71,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="@string/note_item_desc_placholder"
-            android:textColor="@color/black70"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />

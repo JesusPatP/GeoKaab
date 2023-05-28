@@ -21,6 +21,68 @@
         <item name="cardBackgroundColor">@color/gray50</item>
     </style>
     <style name="screen_bg_card_2">
-        <item name="android:background">@color/gray30</item>
+        <item name="cardBackgroundColor">@color/white</item>
     </style>
+    <style name="listDivider_bg">
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="icons_bg">
+        <item name="android:tint">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <!--Text-->
+    <style name="TitilliumWebLight">
+        <item name="android:fontFamily">@font/titillium_web_light</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TitilliumWebRegular">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TitilliumWebBold">
+        <item name="android:fontFamily">@font/titillium_web_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TitilliumWebBlack">
+        <item name="android:fontFamily">@font/titillium_web_black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitleStyle_2">
+        <item name="android:fontFamily">@font/titillium_web_bold</item>
+        <item name="android:textSize">28dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TitleStyle">
+        <item name="android:fontFamily">@font/titillium_web_bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SubTitleStyle">
+        <item name="android:fontFamily">@font/titillium_web_bold</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="DescStyle">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="ChipTextStyle">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>
