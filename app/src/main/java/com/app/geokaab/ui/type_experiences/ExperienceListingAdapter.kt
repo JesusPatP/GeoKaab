@@ -1,16 +1,20 @@
 package com.app.geokaab.ui.type_experiences
 
-import android.os.Build
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.app.geokaab.data.model.Experience
 import com.app.geokaab.databinding.ItemExperienceCardBinding
+import com.app.geokaab.util.hide
+import com.app.geokaab.util.show
 import com.squareup.picasso.Picasso
-import java.util.function.Predicate
-import java.util.stream.Collectors
+import com.squareup.picasso.Picasso.LoadedFrom
+import kotlinx.coroutines.flow.callbackFlow
+
 
 class ExperienceListingAdapter(
     val onItemClicked: (Int, Experience) -> Unit
@@ -56,7 +60,23 @@ class ExperienceListingAdapter(
             binding.type.setText(item.type[1])
             //binding.description.setText(item.description)
             binding.image.scaleType = ImageView.ScaleType.FIT_XY
-            Picasso.get().load(item.images[0]).into(binding.image)
+            Picasso.get().load(item.images[0]).into(binding.image, object : com.squareup.picasso.Callback{
+                override fun onSuccess() {
+                    //set animations here
+                    binding.progressBar.cancelLongPress()
+                    binding.progressBar.hide()
+                    binding.image.show()
+                }
+
+                override fun onError(e: java.lang.Exception?) {
+                    //do smth when there is picture loading error
+                }
+            })
+
+
+
+
+
             binding.description.apply {
                 if (item.description.length > 120){
                     text = "${item.description.substring(0,120)}..."
@@ -88,7 +108,6 @@ class ExperienceListingAdapter(
 
 
     }
-
 
 
 }

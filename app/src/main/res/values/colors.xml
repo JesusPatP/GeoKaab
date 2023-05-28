@@ -7,12 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="purple">#0x46578D</color>
 
     <!--Extra colors-->
+    <color name="blackbg">#121212</color>
     <color name="black70">#B3000000</color>
+    <color name="black60">#9A000000</color>
     <color name="black50">#80000000</color>
     <color name="black30">#4D000000</color>
     <color name="black10">#1A000000</color>
+
+    <color name="gray50">#1C1C1C</color>
+    <color name="gray40">#4D4D4D</color>
+    <color name="gray30">#9E9E9E</color>
+
 
     <color name="background_clr">#FAFBFF</color>
 
@@ -32,4 +40,6 @@
     <color name="i1">#BFBFBF</color>
     <color name="i2">#F2F2F2</color>
     <color name="card_bg">#E6E3E3</color>
+    <!--Dark UI-->
+
 </resources>

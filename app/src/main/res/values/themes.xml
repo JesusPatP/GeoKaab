@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GeoKaab" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.GeoKaab" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -58,12 +59,22 @@
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize8Percent" parent="">
-        <item name="cornerSize">3%</item>
+        <item name="cornerSize">4%</item>
     </style>
 
     <style name="CustomTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/black10</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="hintTextColor">@color/black50</item>
+    </style>
+
+    <style name="screen_bg">
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="screen_bg_card_1">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+    <style name="screen_bg_card_2">
+        <item name="android:background">@color/gray40</item>
     </style>
 </resources>
