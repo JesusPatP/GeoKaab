@@ -65,9 +65,7 @@ class ExperiencesFragment : Fragment() {
     val adapterTypes by lazy {
         TypeExperienceListingAdapter(
             onItemClicked = { pos, item ->
-                Toast.makeText(context, "Hola", Toast.LENGTH_LONG)
                 adapterExperiences.filterByTypeCode(item.id.toString())
-
                 //viewModelExperiences.filterExperiences(item.id)
             }
         )
@@ -117,8 +115,6 @@ class ExperiencesFragment : Fragment() {
 
         //Get Types
         viewModelTypes.getTypeExperiences()
-        //Get Experiences
-        viewModelExperiences.getExperiences()
         //Get Locations
         viewModelLocation.getLocations()
 
@@ -169,7 +165,7 @@ class ExperiencesFragment : Fragment() {
                     BottomSheetBehavior.STATE_EXPANDED ->{
                         binding.buttonMap.show()
                         binding.imgBottonSheet.hide()
-                        binding.designBottomSheet.background = resources.getDrawable(R.color.white)
+                        binding.designBottomSheet.background = resources.getDrawable(R.color.bg_sheet)
 
                     }
                     /*
@@ -215,6 +211,9 @@ class ExperiencesFragment : Fragment() {
                 is UiState.Success -> {
                     binding.progressBar.hide()
                     firstTypeExperience = adapterTypes.onCreateList(state.data.toMutableList())
+                    //Get Experiences
+                    viewModelExperiences.getExperiences()
+
                 }
             }
         }

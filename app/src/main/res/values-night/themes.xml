@@ -17,11 +17,15 @@
     <style name="screen_bg">
         <item name="android:background">@color/gray50</item>
     </style>
+    <color name="bg_sheet">@color/gray50</color>
     <style name="screen_bg_card_1">
         <item name="cardBackgroundColor">@color/gray50</item>
     </style>
     <style name="screen_bg_card_2">
         <item name="cardBackgroundColor">@color/white</item>
+    </style>
+    <style name="screen_bg_card_3">
+        <item name="cardBackgroundColor">@color/gray40</item>
     </style>
     <style name="listDivider_bg">
         <item name="android:background">@color/white</item>

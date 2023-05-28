@@ -19,6 +19,10 @@
     <style name="screen_bg">
         <item name="android:background">@color/white</item>
     </style>
+    <style name="screen_bg_card_3">
+        <item name="cardBackgroundColor">@color/gray40</item>
+    </style>
+    <color name="bg_sheet">@color/white</color>
     <style name="icons_bg">
         <item name="android:tint">@color/black70</item>
         <item name="android:backgroundTint">@color/black70</item>
@@ -85,5 +89,6 @@
     <style name="ShapeAppearanceOverlay.App.CornerSize8Percent" parent="">
         <item name="cornerSize">4%</item>
     </style>
+
 
 </resources>

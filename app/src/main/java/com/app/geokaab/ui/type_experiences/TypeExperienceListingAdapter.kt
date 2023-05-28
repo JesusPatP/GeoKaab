@@ -20,6 +20,7 @@ class TypeExperienceListingAdapter(
 ) : RecyclerView.Adapter<TypeExperienceListingAdapter.MyViewHolder>() {
 
     private var list: MutableList<TypeExperience> = arrayListOf()
+    private var listOriginal: MutableList<TypeExperience> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = ItemTypeExperienceBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -29,7 +30,6 @@ class TypeExperienceListingAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list[position]
         holder.bind(item)
-        
     }
 
     fun updateList(list: MutableList<TypeExperience>){
@@ -37,14 +37,41 @@ class TypeExperienceListingAdapter(
         notifyDataSetChanged()
     }
 
-    fun onCreateList(list: MutableList<TypeExperience>) : String{
+    fun onCreateList(listOn: MutableList<TypeExperience>) : String{
+
+        this.listOriginal.clear()
+        listOriginal = listOn
+
+        var status = "cW8j8mHtofEvflsOqVM0";
+
+        for ((index,item) in listOn.withIndex()){
+            if (item.status != 0){
+                status = item.id
+                break
+            }
+        }
+        filter()
+        return status.toString()
+    }
+
+    fun filter(){
+        this.list.clear()
+        //listOriginal = list
+
+        listOriginal.forEachIndexed{
+                index, parameters ->
+            if (parameters.status != 0){
+                list.add(parameters)
+            }
+
+        }
         updateList(list)
-        return list[0].id.toString()
     }
 
     fun removeItem(position: Int){
         list.removeAt(position)
         notifyItemChanged(position)
+
     }
 
     override fun getItemCount(): Int {

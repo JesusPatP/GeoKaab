@@ -99,7 +99,6 @@ class ExperienceListingAdapter(
             index, parameters ->
             if (parameters.type[0] == idType){
                 list.add(parameters)
-                println("######Hola########" + parameters.title)
             }
 
         }
