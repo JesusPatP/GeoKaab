@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.app.geokaab.R
+import com.app.geokaab.data.model.Contact
 import com.app.geokaab.data.model.Experience
 import com.app.geokaab.databinding.ActivityExperienceDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -52,14 +53,14 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun initialize(){
-        var objNote: Experience? = null
+        var objExperience: Experience? = null
         //Para el mapa
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
 
-        objNote = intent.getSerializableExtra("experience") as? Experience
+        objExperience = intent.getSerializableExtra("experience") as? Experience
 
-        objNote?.let { experience ->
+        objExperience?.let { experience ->
             //
             binding.image.scaleType = ImageView.ScaleType.FIT_XY
             Picasso.get().load(experience.images[0]).into(binding.image)
@@ -118,6 +119,34 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
             //val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             //mapFragment?.getMapAsync(callback)
+
         }
+        var objContact: Contact? = null
+        //Para el mapa
+        objContact = intent.getSerializableExtra("contact") as? Contact
+        objContact?.let { contact ->
+            var name = contact.name + " " + contact.last_name
+            binding.name.setText(name.toString())
+            binding.locationContact.setText(contact.location[0])
+            var lenguagesText = ""
+            for (position in contact.languages.indices){
+                if (position == 0){
+                    lenguagesText = contact.languages[position]
+                }else{
+                    lenguagesText += "/" + contact.languages[position]
+                }
+            }
+            binding.lenguagesContact.setText(lenguagesText.toString())
+            binding.phoneContact.setText(contact.phone_number.toString())
+            //
+            binding.imageLocationContact.scaleType = ImageView.ScaleType.FIT_XY
+            Picasso.get().load(contact.location_images[0]).into(binding.imageLocationContact)
+            //
+            binding.imageContact.scaleType = ImageView.ScaleType.FIT_XY
+            Picasso.get().load(contact.images[0]).into(binding.imageContact)
+        }
+
     }
+
+
 }

@@ -8,6 +8,8 @@ object FireStoreCollection{
     val TypeExperience = "type_experiences"
     val Experience = "experiences"
     val Location = "locations"
+    val Contact = "contacts"
+
 }
 
 object FireDatabase{

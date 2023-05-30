@@ -204,6 +204,7 @@
             style="@style/listDivider_bg" />
 
         <!--Map-->
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -451,5 +452,123 @@
 
         </androidx.cardview.widget.CardView>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            style="@style/listDivider_bg" />
+        <!--contacts-->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardElevation="0dp"
+            style="@style/screen_bg_card_1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SubTitleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contact:" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/img_2_1"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent_2" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingStart="10dp">
+                            <TextView
+                                android:id="@+id/name"
+                                style="@style/SubTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Juan Carlos Torres Yah" />
+                            <TextView
+                                android:id="@+id/location_contact"
+                                style="@style/TextStyle"
+                                android:paddingTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Se ubica en contra esquina de la escuela primaria. En la misma calle cerca de la subdelegación y el domo" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="5dp">
+                                <TextView
+                                    style="@style/SubTitleStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="languages: " />
+
+                                <TextView
+                                    android:id="@+id/lenguages_contact"
+                                    style="@style/TextStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Español/Maya" />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="5dp">
+                                <TextView
+                                    style="@style/SubTitleStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Phone: " />
+
+                                <TextView
+                                    android:id="@+id/phone_contact"
+                                    style="@style/TextStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="9838460779" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:paddingTop="10dp"
+                    android:id="@+id/image_location_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+
+                    android:scaleType="fitXY"
+                    android:background="@drawable/img_1_2"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize8Percent" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

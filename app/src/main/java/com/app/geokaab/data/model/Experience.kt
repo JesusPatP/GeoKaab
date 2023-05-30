@@ -19,4 +19,7 @@ data class Experience(
     @SerializedName("capacity") val capacity: Int = 0,
     @SerializedName("availability") val availability : List<String> = arrayListOf(),
     @SerializedName("activities") val activities: List<String> = arrayListOf(),
+
+    @SerializedName("contacts") val contacts: List<String> = arrayListOf(),
+    @SerializedName("id_location") val id_location: List<String> = arrayListOf(),
 ) : Serializable

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.geokaab.R
+import com.app.geokaab.data.model.Contact
 import com.app.geokaab.data.model.Location
 import com.app.geokaab.databinding.FragmentExperiencesBinding
 import com.app.geokaab.util.UiState
@@ -43,6 +44,7 @@ class ExperiencesFragment : Fragment() {
     val viewModelTypes: TypeExperienceViewModel by viewModels()
     val viewModelExperiences: ExperienceViewModel by viewModels()
     val viewModelLocation: LocationViewModel by viewModels()
+    val viewModelContact: ContactViewModel by viewModels()
     //lateinit var MainActivityBottomBar: Fragment
 
     //
@@ -51,11 +53,14 @@ class ExperiencesFragment : Fragment() {
     private  var longitude : Double = -87.1195703
     private var title : String = "Xcaret"
 
+    private var list_contacts: List<Contact> = arrayListOf()
     val adapterExperiences by lazy {
         ExperienceListingAdapter(
-            onItemClicked = { pos, item ->
+            onItemClicked = { index, item ->
                 val intent = Intent(activity, ExperienceDetailActivity::class.java).apply {
                     putExtra("experience", item)
+                    putExtra("contact",getContact(item.contacts[0]))
+                    //getContact(item.contacts[0])
                 }
                 startActivity(intent)
             }
@@ -69,6 +74,16 @@ class ExperiencesFragment : Fragment() {
                 //viewModelExperiences.filterExperiences(item.id)
             }
         )
+    }
+
+    fun getContact(id:String): Contact? {
+        var item : Contact? = null
+        for ((index,element) in list_contacts.withIndex()){
+            if (element.id == id){
+                item = element
+            }
+        }
+        return item
     }
 
 
@@ -117,6 +132,8 @@ class ExperiencesFragment : Fragment() {
         viewModelTypes.getTypeExperiences()
         //Get Locations
         viewModelLocation.getLocations()
+        //Get contacts
+        viewModelContact.getContacts()
 
 
 
@@ -247,6 +264,24 @@ class ExperiencesFragment : Fragment() {
                     binding.progressBar.hide()
                     getLocations(state.data.toList())
                     createMap()
+                    //adapterExperiences.createList(state.data.toMutableList(), firstTypeExperience)
+                }
+            }
+        }
+
+        viewModelContact.Contact.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is UiState.Loading -> {
+                    binding.progressBar.show()
+                }
+                is UiState.Failure -> {
+                    binding.progressBar.hide()
+                    toast(state.error)
+                }
+                is UiState.Success -> {
+                    binding.progressBar.hide()
+                    list_contacts = state.data.toMutableList()
+                    //createMap()
                     //adapterExperiences.createList(state.data.toMutableList(), firstTypeExperience)
                 }
             }

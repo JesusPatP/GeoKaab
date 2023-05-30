@@ -40,4 +40,13 @@ object RepositoryModule {
         return LocationRepositoryImp(database,storageReference)
     }
 
+    @Provides
+    @Singleton
+    fun provideContactRepository(
+        database: FirebaseFirestore,
+        storageReference: StorageReference
+    ): ContactRepository {
+        return ContacRepositoryImp(database,storageReference)
+    }
+
 }
