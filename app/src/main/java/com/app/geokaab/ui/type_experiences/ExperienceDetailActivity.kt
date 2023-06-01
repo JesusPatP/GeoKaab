@@ -39,21 +39,24 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onBackPressed()
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
+    override fun onMapReady(googleMap:GoogleMap) {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(latitude,longitude)
-        mMap.addMarker(MarkerOptions().position(sydney).title(title))
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val mapLocation = LatLng(latitude,longitude)
+        mMap.addMarker(MarkerOptions().position(mapLocation).title(title))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(mapLocation))
+        /*
         mMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(sydney,10f),
+            CameraUpdateFactory.newLatLngZoom(mapLocation,10f),
             3000,null
         )
+         */
     }
 
     fun initialize(){
         var objExperience: Experience? = null
+
         //Para el mapa
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
@@ -122,6 +125,7 @@ class ExperienceDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
         var objContact: Contact? = null
+
         //Para el mapa
         objContact = intent.getSerializableExtra("contact") as? Contact
         objContact?.let { contact ->

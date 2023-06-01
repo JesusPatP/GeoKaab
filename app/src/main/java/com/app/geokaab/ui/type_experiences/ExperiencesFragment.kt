@@ -121,10 +121,10 @@ class ExperiencesFragment : Fragment() {
         binding.recyclerViewTypes.adapter = adapterTypes
 
         //Manager to experiences
-        val layoutManagerExperiences =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        //val layoutManagerExperiences =
+            //LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         //val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.recyclerViewExperiences.layoutManager = layoutManagerExperiences
+        //binding.recyclerViewExperiences.layoutManager = layoutManagerExperiences
         binding.recyclerViewExperiences.adapter = adapterExperiences
 
 

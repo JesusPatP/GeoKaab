@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/screen_bg"
-    android:layout_marginBottom="?attr/actionBarSize">
+    android:layout_marginBottom="?attr/actionBarSize"
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -113,7 +114,6 @@
     </androidx.cardview.widget.CardView>
 
     <!--Map-->
-
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
